@@ -1,11 +1,15 @@
 package com.amani.gestioncafee;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 public class accueil extends AppCompatActivity {
@@ -80,4 +84,30 @@ public class accueil extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.Français:
+                startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                return  true;
+            case R.id.Anglais:
+                startActivityForResult(new Intent(android.provider.Settings.ACTION_SETTINGS), 0);
+                return  true;
+            case R.id.se_décoonecter:
+                onDestroy();
+                Intent intent=new  Intent(accueil.this,MainActivity.class);
+                startActivity(intent);
+                return true;
+
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
